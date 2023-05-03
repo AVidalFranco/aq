@@ -21,11 +21,11 @@ with directional outlyingness"""
 # with an empty df after every iteration.
 
 # Define the data we want to study
-varName = 'BEN'
+varName = 'TOL'
 timeStep = "1 day" # 1 day or 15 min
 timeFrame = 'b' # 'a' for months, 'b' for weeks, and 'c' for days
 
-preprocessing = 'n' # Set the preprocessing option
+preprocessing = 'Y' # Set the preprocessing option
 
 if __name__ == '__main__':
     
