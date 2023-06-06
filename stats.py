@@ -296,7 +296,7 @@ if __name__ == '__main__':
 
 files=["BEN_pro.csv", "CO_pro.csv", "MXIL_pro.csv", "NO_pro.csv", "NO2_pro.csv", "O3_pro.csv", "PM2.5_pro.csv", "SO2_pro.csv", "TOL_pro.csv"]
 
-stats = pd.DataFrame(columns=["variable", "estatística shapiro-wilk", "valor p shapiro-wilk", "estatística kolmogorov-smirnov", "valor p kolmogorov-smirnov"])
+#stats = pd.DataFrame(columns=["variable", "estatística shapiro-wilk", "valor p shapiro-wilk", "estatística kolmogorov-smirnov", "valor p kolmogorov-smirnov"])
 
 for f in files:
     varname = f.split("_")
@@ -319,11 +319,18 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
     # Mostrar a gráfica
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do BENCENO")
-    #plt.show()
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do BENCENO")
+
+    plt.show()
 
 
 
@@ -342,11 +349,18 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
-
+    sm.qqplot(df[nome_columna], line='s')
+    
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do CO")
-    #plt.show()
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do CO")
 
+    plt.show()
+    
   
 
 
@@ -365,9 +379,17 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do M-XILENO")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do M-XILENO")
+
+    plt.show()
     #plt.show()
 
 
@@ -388,9 +410,17 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do NO")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do NO")
+
+    plt.show()
     #plt.show()
 
 
@@ -407,8 +437,17 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
+    
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do NO2")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do NO2")
+
+    plt.show()
     #plt.show()
 
 
@@ -427,9 +466,17 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do O3")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do O3")
+
+    plt.show()
     #plt.show()
 
 
@@ -447,9 +494,17 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do PM2.5")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do PM2.5")
+
+    plt.show()
     #plt.show()
 
 
@@ -470,9 +525,17 @@ for f in files:
     
     # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do SO2")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do SO2")
+
+    plt.show()
     #plt.show()
 
 
@@ -492,9 +555,17 @@ for f in files:
 
         # Q-Q
     nome_columna = "value"
-    #sm.qqplot(df[nome_columna], line='s')
+    sm.qqplot(df[nome_columna], line='s')
 
+    #plt.xlabel("Valor")
+    #plt.ylabel("Frecuencia")
     #plt.title("Histograma do TOLUENO")
+    
+    plt.xlabel("Cuantís teóricos")
+    plt.ylabel("Cuantís observados")
+    plt.title("Gráfica Q-Q do TOLUENO")
+
+    plt.show()
     #plt.show()
 
     df = pd.read_csv(f"Database/{f}", sep=";", encoding="utf-8")
