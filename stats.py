@@ -4,8 +4,14 @@ import pandas as pd
 import fitter as ft
 import seaborn as sns
 import pingouin as pg
+import statsmodels.api as sm 
+import math
+
 
 from scipy import stats
+from scipy.stats import shapiro
+from scipy.stats import kstest
+from scipy.stats import lognorm
 from matplotlib import pyplot as plt
 plt.style.use('ggplot')
 
@@ -287,4 +293,230 @@ if __name__ == '__main__':
 
     # Test de distribución normal
     #
+
+files=["BEN_pro.csv", "CO_pro.csv", "MXIL_pro.csv", "NO_pro.csv", "NO2_pro.csv", "O3_pro.csv", "PM2.5_pro.csv", "SO2_pro.csv", "TOL_pro.csv"]
+
+stats = pd.DataFrame(columns=["variable", "estatística shapiro-wilk", "valor p shapiro-wilk", "estatística kolmogorov-smirnov", "valor p kolmogorov-smirnov"])
+
+for f in files:
+    varname = f.split("_")
+    varname = varname[0]
+
+    # Gráficas
+    #BENCENO
+    # Cargar os datos do arquivo BEN_pro.csv nun DataFrame
+    ruta_arquivo = os.path.join("Database", "BEN_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    # Imprimir os nomes das columnas para identificar o nome correcto da columna de datos de benceno
+    #print(df.columns)
+
+    # Crear o histograma utilizando Seaborn
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    # Mostrar a gráfica
+    #plt.title("Histograma do BENCENO")
+    #plt.show()
+
+
+
+
+
+    #CO
+    ruta_arquivo = os.path.join("Database", "CO_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do CO")
+    #plt.show()
+
+  
+
+
+
+
+    #MXIL
+    ruta_arquivo = os.path.join("Database", "MXIL_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do M-XILENO")
+    #plt.show()
+
+
+
+
+
+
+    #NO
+    ruta_arquivo = os.path.join("Database", "NO_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do NO")
+    #plt.show()
+
+
+    #NO2
+    ruta_arquivo = os.path.join("Database", "NO2_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+    #plt.title("Histograma do NO2")
+    #plt.show()
+
+
+
+
+    #O3
+    ruta_arquivo = os.path.join("Database", "O3_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do O3")
+    #plt.show()
+
+
+
+    #PM2.5
+    ruta_arquivo = os.path.join("Database", "PM2.5_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do PM2.5")
+    #plt.show()
+
+
+
+
+
+    #SO2
+    ruta_arquivo = os.path.join("Database", "SO2_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";")
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+    
+    # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do SO2")
+    #plt.show()
+
+
+
+
+    #TOL
+    ruta_arquivo = os.path.join("Database", "TOL_pro.csv")
+    df = pd.read_csv(ruta_arquivo, delimiter=";") 
+
+    #Para converter todo a tipo numérico
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+
+    #print(df.columns)
+
+    #sns.histplot(data=df, x="value", kde=True, color="green")
+
+
+        # Q-Q
+    nome_columna = "value"
+    #sm.qqplot(df[nome_columna], line='s')
+
+    #plt.title("Histograma do TOLUENO")
+    #plt.show()
+
+    df = pd.read_csv(f"Database/{f}", sep=";", encoding="utf-8")
+    print(df)
+    
+        #Proba Shapiro-Wilk
+
+    stat_sw, p_value_sw=shapiro(df[nome_columna])
+    print("Estatística SW", stat_sw)
+    print("Valor p SW", p_value_sw)
+
+        #Kolmogorov-Smirnov Test
+
+    stat_ks, p_value_ks=kstest(df[nome_columna], 'norm')
+    print("Estatística KS", stat_ks)
+    print("Valor p KS", p_value_ks)
+
+   
+    stats.loc[len(stats.index)] = [varname, stat_sw, p_value_sw, stat_ks, p_value_ks]
+
+print(stats)
+
+stats.to_csv("tests.csv", sep=";", encoding="utf-8", index=False)
+
 
