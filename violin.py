@@ -79,10 +79,11 @@ def violins(nome_variable, ruta_arquivo):
 
     fig, ax = plt.subplots(figsize=(9, 9))
     fig.subplots_adjust(bottom=-2)
-    sns.violinplot(data=combined_df)
+    #sns.set(style="whitegrid")
+    #sns.violinplot(data=combined_df, x="variables", y="valores")
     label_title = labeler(varname=nome_variable)
-    plt.xlabel(label_title)
-    plt.ylabel("Valores")
+    # plt.xlabel(label_title)
+    # plt.ylabel("Valores")
     plt.xticks(rotation=45)
     plt.title(f"Gráfica de violín do {label_title}")
 
@@ -91,12 +92,6 @@ def violins(nome_variable, ruta_arquivo):
 
 
 
-    #Boxplot
-
-    # plt.figure()
-    # plt.title("Boxplots das variables")
-    # sns.boxplot(data=datos_normalizados)
-    # plt.show()
 
 
 
