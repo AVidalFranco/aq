@@ -5,16 +5,7 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 plt.style.use('ggplot')
 
-
-
-df = pd.read_csv("stats.csv", delimiter=";", encoding="utf-8")
-
-columns = ["variable","max","min","media","mediana","desviacion","Q1","Q2","Q3"]
-variables = ["BEN", "CO", "MXIL", "NO", "NO2", "O3", "PM2.5", "SO2", "TOL"]
-
-print(df)
-
-
+# Definimos as funcións
 def labeler(varname):
      if varname == "BEN":
          label_title = "BENCENO"
@@ -34,69 +25,58 @@ def labeler(varname):
          label_title = "TOLUENO"
      return label_title
 
+def joiner_databases():
 
+    files=["BEN_pro.csv", "CO_pro.csv", "MXIL_pro.csv", "NO_pro.csv", "NO2_pro.csv", "O3_pro.csv", "PM2.5_pro.csv", "SO2_pro.csv", "TOL_pro.csv"]
 
+    datos = pd.DataFrame()
 
-
-datos = df[columns[1:]]
-
-maximo = datos["max"].max()
-minimo = datos["min"].min()
-media = datos["media"].mean()
-mediana = datos["mediana"].median()
-desviacion = datos["desviacion"].std()
-q1 = datos["Q1"].quantile(0.25)
-q2 = datos["Q2"].quantile(0.5)
-q3 = datos["Q3"].quantile(0.75)
-
-datos_normalizados = (datos - media)/desviacion
-
-print(datos_normalizados)
-
-
-
-def violins(nome_variable, ruta_arquivo):
-    nome_variable = ["BEN", "CO", "MXIL", "NO", "NO2", "O3", "PM2.5", "SO2", "TOL"]
-
-    combined_df = pd.DataFrame()
-
-     
-    for variable in ruta_arquivo:
-        df = pd.read_csv(variable, delimiter=";", encoding="utf-8")
-        if (nome_variable + variable[1:10]) in df.columns:
-            combined_df= pd.concat([combined_df, df[nome_variable + variable[1:10]]], axis=1)
-         
+    for i in files:
+        df = pd.read_csv(f"Database/{i}", delimiter=";", encoding="utf-8")
         
-    
-    if combined_df.empty:
-        print("Está mal")
-    else: 
-        print(combined_df.to_string)
+        var = df.iloc[:, 1]
         
-       
+
+        datos = pd.concat([datos, var], axis=1)
     
+    file_names = [i.split("_")[0] for i in files]
+
+    datos.columns = file_names
+
+    datos.to_csv("datos.csv", sep=";", encoding="utf-8", index=False)
+ 
+    return file_names
+
+def violins(file_names):
+    datos = pd.read_csv("datos.csv", delimiter=";", encoding="utf-8")
+   
+    from sklearn.preprocessing import MinMaxScaler
+    scaler = MinMaxScaler()
+    datos = scaler.fit_transform(datos)
+    print(datos)
+
     #Gráficas de violín
 
-    fig, ax = plt.subplots(figsize=(9, 9))
-    fig.subplots_adjust(bottom=-2)
-    #sns.set(style="whitegrid")
-    #sns.violinplot(data=combined_df, x="variables", y="valores")
-    label_title = labeler(varname=nome_variable)
-    # plt.xlabel(label_title)
+    fig, ax = plt.subplots(figsize=(4, 4))
+    # fig.subplots_adjust(bottom)
+    sns.set(style="whitegrid")
+    sns.violinplot(data=datos)
+    # label_title = labeler(varname=file_name)
+    # plt.xlabel(file_names)
     # plt.ylabel("Valores")
-    plt.xticks(rotation=45)
-    plt.title(f"Gráfica de violín do {label_title}")
-
-
+    # plt.xticks(rotation=45)
+    # plt.title("Gráficas de violín")
+    plt.xticks(range(len(file_names)), file_names)
+    plt.xlabel("Variables")
+    plt.ylabel("Valores")
+    plt.title("Gráficas de violín")
     plt.show()
 
 
 
-
-
-
-
-
+        
+if __name__ == '__main__':
+    file_names = joiner_databases()
+    violins(file_names)
     
-
 
