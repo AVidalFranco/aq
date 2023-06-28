@@ -31,10 +31,10 @@ import seaborn as sns
 from matplotlib import pyplot as plt
 
 # This function gets the weekly timeStamps of a database
-def get_timestamps(filename):
+def get_timestamps(BEN_pro):
     
     # Read the dataase that contains the starting and ending dates of each week
-    df = pd.read_csv(f'Database/{filename}.csv', delimiter=';')
+    df = pd.read_csv(f'Database/{BEN_pro}.csv', delimiter=';')
 
     timeStamps = []
 
@@ -51,13 +51,13 @@ def get_timestamps(filename):
     return timeStamps
 
 # This function get the binarized outliers of a certain variable
-def binarizer(filename, timestamps):
+def binarizer(BEN_pro, timestamps):
 
     # Get the time stamps present in each variable
-    timeStamps_var = get_timestamps(filename=f'{filename}_pro')
+    timeStamps_var = get_timestamps(BEN_pro=f'{BEN_pro}')
 
     # Get the outlying time stamps
-    df = pd.read_csv(f'Database/{filename}_out.csv', delimiter=';')
+    df = pd.read_csv(f'Database/{BEN_pro}.csv', delimiter=';')
     outliers = list(df['timeStamps'])
 
     binarized_outliers = []

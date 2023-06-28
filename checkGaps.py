@@ -13,12 +13,12 @@ def checkGaps(File, timestep):
     
     if timestep == '15 min':
         dateParser = lambda x: datetime.strptime(x, '%d-%m-%Y %H:%M:%S') # It is 4 times faster with the parser
-        df = pd.read_csv(f'Database/{fileName}.csv', delimiter=';', parse_dates=['Fecha'], date_parser=dateParser, index_col=['Fecha'])
+        df = pd.read_csv(f'Database/{fileName}.csv', delimiter=';', parse_dates=['date'], date_parser=dateParser, index_col=['date'])
         frequency = '15min'
         
     elif timestep == '1 day':
         dateParser = lambda x: datetime.strptime(x, '%d-%m-%Y') # It is 4 times faster with the parser
-        df = pd.read_csv(f'Database/{fileName}.csv', delimiter=';', parse_dates=['Fecha'], date_parser=dateParser, index_col=['Fecha'])
+        df = pd.read_csv(f'Database/{fileName}.csv', delimiter=';', parse_dates=['date'], date_parser=dateParser, index_col=['date'])
         frequency = 'D'
 
     # Remove the index duplication
