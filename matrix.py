@@ -57,17 +57,28 @@ def correlation_matrix(file_names):
 
     fig, ax = plt.subplots(figsize=(9,9))
 
+    fig.subplots_adjust(left=0.165)
+
     sns.heatmap(
         corr, 
+        cmap='RdBu',
+        annot=True,
+        # annot_kws={"fontsize":10},
+        # cbar=True
         vmin=-1, vmax=1, center=0,
-        cmap=sns.diverging_palette(20, 220, n=200),
+        # cmap=sns.diverging_palette(20, 220, n=200),
         square=True,
         ax=ax,
     )
+
+    xticks_position = [(i + 0.5) for i in range(len(file_names))]
+    yticks_position = [(i + 0.5) for i in range(len(file_names))]
     
 
-    plt.xticks(range(len(file_names)), file_names)
-    plt.yticks(range(len(file_names)), file_names, rotation = 0)
+    # plt.xticks(range(len(file_names)), file_names, fontsize=10)
+    # plt.yticks(range(len(file_names)), file_names, rotation = 0, fontsize=10)
+    plt.xticks(xticks_position, file_names, fontsize=10)
+    plt.yticks(yticks_position, file_names, rotation = 0, fontsize=10)
     plt.title("Matriz de correlación de variables")
     plt.show()
 
