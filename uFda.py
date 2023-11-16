@@ -54,6 +54,9 @@ def labeler(varname):
     elif varname == "Nivel" or varname == 'Nivel_p1' or varname == 'Nivel_p2' or varname == 'Nivel_p':
         label_title = r'Water level'
         label_y_axis = r'Water level ' + r'(m)'
+    elif varname == 'BEN':
+        label_title = r'Benceno'
+        label_y_axis = r'Benceno ' + r'(ppm)'
 
     return label_title, label_y_axis
 
@@ -1210,7 +1213,7 @@ def msplot_oldversion(varname, depthname, timestamps, depth, cutoff, smootheddat
         for col in dfPlotly.columns:
             fig.add_trace(go.Scatter(x=dfPlotly.index, y=dfPlotly[col], mode='lines', name=col, marker_color=colorDict[col]))
         
-        fig.show()
+        # fig.show()
     
     else:
 

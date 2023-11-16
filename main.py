@@ -21,11 +21,11 @@ with directional outlyingness"""
 # with an empty df after every iteration.
 
 # Define the data we want to study
-varName = 'pH'
-timeStep = "15 min" # 1 day or 15 min
+varName = 'TOL'
+timeStep = "1 day" # 1 day or 15 min
 timeFrame = 'b' # 'a' for months, 'b' for weeks, and 'c' for days
 
-preprocessing = 'n' # Set the preprocessing option
+preprocessing = 'Y' # Set the preprocessing option
 
 if __name__ == '__main__':
     
@@ -62,4 +62,4 @@ if __name__ == '__main__':
     print('[INFO] functionalAnalysis() DONE')
 
     # controlCharts(varname=varName, datamatrix=dataMatrix, timestamps=timeStamps, timeframe=timeFrame, vargraph='mean', outleirsresults=outliersCCiFMCD)
-    # print('[INFO] controlCharts() DONE')
+    # # print('[INFO] controlCharts() DONE')
