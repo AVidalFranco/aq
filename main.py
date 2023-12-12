@@ -2,12 +2,8 @@
 from os import times
 import skfda as fda
 
-from checkGaps import checkGaps
-from normalizer import normalizer
-from filterer import filterer
 from builder import builder
-from uFda import functionalAnalysis
-from controlCharts import controlCharts
+from fda import functionalAnalysis
 
 """This file performs the univariate functional data analysis
 with directional outlyingness"""
@@ -29,24 +25,10 @@ preprocessing = 'Y' # Set the preprocessing option
 
 if __name__ == '__main__':
     
-    # Perform the univariate preprocessing
-    if preprocessing == 'Y':
-        
-        # Fill in the gaps in the time series
-        checkGaps(File=f'{varName}.csv', timestep=timeStep)
-        print('[INFO] checkGaps() DONE')
-        
-        # Normalize the data. See normalizer.py for details
-        normalizer(File=f'{varName}_full.csv', timestep=timeStep)
-        print('[INFO] normalizer() DONE')
-        
-        # Filter out those time units with too many NaN and iterate on the rest
-        filterer(File=f'{varName}_nor.csv', timestep=timeStep, timeframe=timeFrame)
-        print('[INFO] filterer() DONE -> Preprocessing completed')
-
+    # Continue here: take out amplitude from outDec. Call outDec on the iF, MCD, and kNN methods (if outDec == True, continue, else "No outliers detected")
 
     # Read the database with the desired time unit and create dataMatrix and timeStamps
-    dataMatrix, timeStamps = builder(File=f'{varName}_pro.csv', timestep=timeStep, timeFrame=timeFrame)
+    dataMatrix, timeStamps = builder(File=f'data_pro.csv', varname=varName, timestep=timeStep, timeFrame=timeFrame)
     print('[INFO] builder() DONE')
     print(len(dataMatrix), len(timeStamps))
 
@@ -58,8 +40,7 @@ if __name__ == '__main__':
     # projectionDepth = fda.exploratory.depth.multivariate.ProjectionDepth()
     # simplicialDepth = fda.exploratory.depth.multivariate.SimplicialDepth()
     
-    outliers = functionalAnalysis(varname=varName, depthname='modified band', datamatrix=dataMatrix, timestamps=timeStamps, timestep=timeStep, timeframe=timeFrame, depth=modifiedbandDepth, cutoff=cutoffMDBMS, contamination=0.10)
+    outliers = functionalAnalysis(varname=varName, depthname='modified band', datamatrix=dataMatrix, timestamps=timeStamps, 
+                                timestep=timeStep, timeframe=timeFrame, depth=modifiedbandDepth, cutoff=cutoffMDBMS, 
+                                contamination=0.10, detection_threshold=10)
     print('[INFO] functionalAnalysis() DONE')
-
-    # controlCharts(varname=varName, datamatrix=dataMatrix, timestamps=timeStamps, timeframe=timeFrame, vargraph='mean', outleirsresults=outliersCCiFMCD)
-    # # print('[INFO] controlCharts() DONE')
