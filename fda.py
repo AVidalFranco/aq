@@ -243,6 +243,9 @@ def iF(varname, timestamps, depth, cutoff, contamination, smootheddata, smoothed
             if e == 0 and first_zero == False:
                 colors.insert(i, 'lightgray')
                 first_zero = True
+            elif e == 1 and i == 0:
+                colors.insert(i, 'lightgray')
+                first_zero = True
         
         # Functional results
         ax3.set_title(f'Functional data ' + label_title)
