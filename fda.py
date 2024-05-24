@@ -25,7 +25,7 @@ def labeler(varname):
         label_title = r'benceno'
         label_y_axis = r'Benceno ' r'$(\mu*g/m^3)$'
     elif varname == 'CO':
-        label_title = r'Monóxido de carbono'
+        label_title = r'monóxido de carbono'
         label_y_axis = r'Monóxido de carbono ' r'$(m*g/m^3)$'
     elif varname == 'MXIL':
         label_title = r'xileno'
@@ -34,17 +34,17 @@ def labeler(varname):
         label_title = r'óxido nítrico'
         label_y_axis = r'Óxido nítrico ' r'$(\mu*g/m^3)$'
     elif varname == 'NO2':
-        label_title = r'dióxido de nitrógeno'
-        label_y_axis = r'Dióxido de nitrógeno ' r'$(\mu*g/m^3)$'
+        label_title = r'dióxido de nitróxeno'
+        label_y_axis = r'Dióxido de nitróxeno ' r'$(\mu*g/m^3)$'
     elif varname == 'O3':
-        label_title = r'Ozono'
+        label_title = r'ozono'
         label_y_axis = r'Ozono ' r'$(\mu*g/m^3)$'
     elif varname == 'PM2.5':
         label_title = r'PM2.5 '
         label_y_axis = r'PM2.5 ' r'$(\mu*g/m^3)$'
     elif varname == 'SO2':
-        label_title = r'dióxido de azufre'
-        label_y_axis = r'Dióxido de axufre ' r'$(\mu*g/m^3)$'
+        label_title = r'dióxido de xofre'
+        label_y_axis = r'Dióxido de xofre ' r'$(\mu*g/m^3)$'
     elif varname == 'TOL':
         label_title = r'tolueno'
         label_y_axis = r'Tolueno ' r'$(\mu*g/m^3)$'
